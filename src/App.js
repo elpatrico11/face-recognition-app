@@ -15,6 +15,7 @@ function App() {
   const [imageUrl, setImageUrl] = useState('');
   const [age, setAge] = useState({});
   const [route, setRoute] = useState('signin');
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
     const guessAge = (data) =>{
     const guessedAge = data.outputs[0].data.concepts[0]
@@ -29,7 +30,6 @@ function toPercentage(num, decimalPlaces = 2) {
 }
 
   const displayAge = (age) =>{
-    console.log(age);
     setAge(age);
   }
 
@@ -38,6 +38,11 @@ function toPercentage(num, decimalPlaces = 2) {
   }
 
   const onRouteChange = (route) =>{
+    if(route === 'signout'){
+      setIsSignedIn(false);
+    } else if(route === 'home'){
+      setIsSignedIn(true);
+    }
     setRoute(route);
   }
 
@@ -98,7 +103,7 @@ function toPercentage(num, decimalPlaces = 2) {
   return (
     <div className="App">
       <ParticlesBg type="cobweb" bg={{position: "absolute", zIndex: -1, top: 0, left: 0}} color="#FFFFFF"  num={280}/>
-      <Navigation onRouteChange={onRouteChange} />
+      <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
       {route === 'home' 
       ? <div>
           <Logo />
