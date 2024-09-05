@@ -29,7 +29,7 @@ function App() {
     // Change these to whatever model and image URL you want to use
     const MODEL_ID = 'face-detection';
     //const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';    
-    const IMAGE_URL = 'https://samples.clarifai.com/metro-north.jpg';
+    const IMAGE_URL = input;
 
     ///////////////////////////////////////////////////////////////////////////////////
     // YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE TO RUN THIS EXAMPLE
@@ -60,12 +60,13 @@ function App() {
         body: raw
     };
 
-    console.log(requestOptions, "yooo");
+    
 
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/outputs", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
+        .then(response => response.json())
+        .then(result => console.log(result.outputs[0].data.regions[0].region_info.bounding_box))
         .catch(error => console.log('error', error));
+        
   }
 
   return (
