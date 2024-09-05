@@ -4,6 +4,7 @@ import Navigation from './components/Nagivation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import ParticlesBg from 'particles-bg'
 
 function App() {
@@ -71,7 +72,7 @@ function App() {
       <Logo />
       <Rank />
       <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
-      {/*<FaceRecognition />*/}
+      <FaceRecognition />
     </div>
   );
 }
