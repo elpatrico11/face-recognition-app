@@ -6,6 +6,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import SignIn from './components/SignIn/SignIn';
+import Register from './components/Register/Register';
 import ParticlesBg from 'particles-bg'
 
 function App() {
@@ -98,14 +99,19 @@ function toPercentage(num, decimalPlaces = 2) {
     <div className="App">
       <ParticlesBg type="cobweb" bg={{position: "absolute", zIndex: -1, top: 0, left: 0}} color="#FFFFFF"  num={280}/>
       <Navigation onRouteChange={onRouteChange} />
-      {route === 'signin' 
-      ? <SignIn onRouteChange = {onRouteChange} />
-      : <div>
+      {route === 'home' 
+      ? <div>
           <Logo />
           <Rank />
           <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
           <FaceRecognition age={age} imageUrl={imageUrl}/>
         </div>
+      :(
+        route === 'signin' 
+        ? <SignIn onRouteChange = {onRouteChange} />
+        : <Register onRouteChange = {onRouteChange} />
+      )
+      
       }
     </div>
   );
