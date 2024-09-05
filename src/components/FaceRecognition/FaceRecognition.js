@@ -1,13 +1,16 @@
 import React from 'react';
 import './FaceRecognition.css';
 
-const FaceRecognition = ({ imageUrl, box }) => {
+const FaceRecognition = ({ imageUrl, age }) => {
   return (
     <div className='center ma'>
         <div className='absolute mt2'>
-            <img id='inputimage' alt='' src={imageUrl}  width='500px' heigh='auto'/>
-            <div className='bounding-box' style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}>
-           </div>
+            <img id='inputimage' alt='' src={imageUrl}  width='500px' height='auto' />
+             {age.name && age.value && (
+              <div className="result white f2">
+                <p>The age is likely {age.name}</p>
+                <p>Guessed with {age.value} accuracy</p>
+              </div>)}
         </div>
     </div>
   );
