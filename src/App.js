@@ -13,6 +13,7 @@ function App() {
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [age, setAge] = useState({});
+  const [route, setRoute] = useState('signin');
 
     const guessAge = (data) =>{
     const guessedAge = data.outputs[0].data.concepts[0]
@@ -33,6 +34,10 @@ function toPercentage(num, decimalPlaces = 2) {
 
   const onInputChange = (event) =>{
     setInput(event.target.value);
+  }
+
+  const onRouteChange = (route) =>{
+    setRoute(route);
   }
 
   const onButtonSubmit = () =>{
@@ -92,12 +97,16 @@ function toPercentage(num, decimalPlaces = 2) {
   return (
     <div className="App">
       <ParticlesBg type="cobweb" bg={{position: "absolute", zIndex: -1, top: 0, left: 0}} color="#FFFFFF"  num={280}/>
-      <Navigation />
-      <SignIn />
-      <Logo />
-      <Rank />
-      <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
-      <FaceRecognition age={age} imageUrl={imageUrl}/>
+      <Navigation onRouteChange={onRouteChange} />
+      {route === 'signin' 
+      ? <SignIn onRouteChange = {onRouteChange} />
+      : <div>
+          <Logo />
+          <Rank />
+          <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
+          <FaceRecognition age={age} imageUrl={imageUrl}/>
+        </div>
+      }
     </div>
   );
 }
