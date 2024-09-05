@@ -5,6 +5,7 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import SignIn from './components/SignIn/SignIn';
 import ParticlesBg from 'particles-bg'
 
 function App() {
@@ -92,6 +93,7 @@ function toPercentage(num, decimalPlaces = 2) {
     <div className="App">
       <ParticlesBg type="cobweb" bg={{position: "absolute", zIndex: -1, top: 0, left: 0}} color="#FFFFFF"  num={280}/>
       <Navigation />
+      <SignIn />
       <Logo />
       <Rank />
       <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
