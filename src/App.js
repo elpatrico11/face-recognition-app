@@ -14,13 +14,17 @@ function App() {
     console.log(event.target.value);
   }
 
+  const onButtonSubmit = () =>{
+    console.log('click');
+  }
+
   return (
     <div className="App">
       <ParticlesBg type="cobweb" bg={{position: "absolute", zIndex: -1, top: 0, left: 0}} color="#FFFFFF"  num={280}/>
       <Navigation />
       <Logo />
       <Rank />
-      <ImageLinkForm onInputChange = {onInputChange} />
+      <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
       {/*<FaceRecognition />*/}
     </div>
   );
