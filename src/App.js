@@ -10,13 +10,16 @@ import ParticlesBg from 'particles-bg'
 function App() {
 
   const [input, setInput] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
   const onInputChange = (event) =>{
-    console.log(event.target.value);
+    setInput(event.target.value);
   }
 
   const onButtonSubmit = () =>{
-    console.log('click');
+    
+    setImageUrl(input);
+
     // Your PAT (Personal Access Token) can be found in the Account's Security section
     const PAT = '046005d92a954fb18b233e95a94cd304';
     // Specify the correct user_id/app_id pairings
@@ -72,7 +75,7 @@ function App() {
       <Logo />
       <Rank />
       <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
-      <FaceRecognition />
+      <FaceRecognition imageUrl={imageUrl}/>
     </div>
   );
 }
