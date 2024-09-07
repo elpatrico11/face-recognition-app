@@ -117,14 +117,14 @@ function toPercentage(num, decimalPlaces = 2) {
       {route === 'home' 
       ? <div>
           <Logo />
-          {console.log(message)}
           <Rank />
           <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
           <FaceRecognition age={age} imageUrl={imageUrl}/>
         </div>
       :(
         route === 'signin' 
-        ? <SignIn onRouteChange = {onRouteChange} />
+        ? <SignIn 
+            onRouteChange = {onRouteChange} />
         : <Register onRouteChange = {onRouteChange} />
       )
       
