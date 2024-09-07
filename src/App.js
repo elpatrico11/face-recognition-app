@@ -22,8 +22,8 @@ function App() {
     entries: 0,
     joined: '',
   });
-
   const [message, setMessage] = useState('');
+
 
   useEffect(() => {
     fetch('http://localhost:4000/')
@@ -117,12 +117,18 @@ function App() {
       {route === 'home' ? (
         <div>
           <Logo />
-          <Rank />
+          <Rank
+            name = {user.name}
+            entries = {user.entries}
+          />
           <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit} />
           <FaceRecognition age={age} imageUrl={imageUrl} />
         </div>
       ) : route === 'signin' ? (
-        <SignIn onRouteChange={onRouteChange} />
+        <SignIn 
+          loadUser = {loadUser}
+          onRouteChange={onRouteChange}
+        />
       ) : (
         <Register onRouteChange={onRouteChange} loadUser={loadUser} />
       )}
