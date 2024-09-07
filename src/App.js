@@ -27,9 +27,9 @@ function App() {
 
   useEffect(() => {
     fetch('http://localhost:4000/')
-      .then((res) => res.json())
-      .then((data) => setMessage(data));
-  }, []);
+      .then((res) => res.json())          //res.json = promise (array of objets (users))
+      .then((data) => (data)); //data = array of objects (users) 
+  }, [user.entries]);
 
   const loadUser = (data) => {
     setUser({
@@ -106,9 +106,34 @@ function App() {
 
     fetch('https://api.clarifai.com/v2/models/' + MODEL_ID + '/outputs', requestOptions)
       .then((response) => response.json())
-      .then((result) => displayAge(guessAge(result)))
-      .catch((error) => console.log('error', error));
-  };
+      .then(response => {
+        if (response) {
+          fetch('http://localhost:4000/image', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              id: user.id
+              })
+            })
+              .then(response => response.json())
+              .then(count => {
+                setUser(prevUser => ({
+                      ...prevUser,
+                      entries: count
+                    }));
+                  })
+                .catch(console.log)
+
+        }
+        displayAge(guessAge(response))
+        })
+        .catch(err => console.log(err));
+      }
+
+
+      // .then((result) => displayAge(guessAge(result)))
+      // .catch((error) => console.log('error', error));
+  // };
 
   return (
     <div className="App">
