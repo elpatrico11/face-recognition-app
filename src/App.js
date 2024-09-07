@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './components/Nagivation/Navigation';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
@@ -11,11 +11,21 @@ import ParticlesBg from 'particles-bg'
 
 function App() {
 
+
+
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [age, setAge] = useState({});
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [message, setMessage] = useState("");
+
+   useEffect(() => {
+    fetch("http://localhost:4000/")
+      .then((res) => res.json())
+      .then((data) => setMessage(data));
+  }, []);
+
 
     const guessAge = (data) =>{
     const guessedAge = data.outputs[0].data.concepts[0]
@@ -107,6 +117,7 @@ function toPercentage(num, decimalPlaces = 2) {
       {route === 'home' 
       ? <div>
           <Logo />
+          {console.log(message)}
           <Rank />
           <ImageLinkForm onInputChange = {onInputChange} onButtonSubmit={onButtonSubmit} />
           <FaceRecognition age={age} imageUrl={imageUrl}/>
